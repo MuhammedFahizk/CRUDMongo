@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .form-control {
+            background-color: #f3f4f7;
+            border: 1px solid #ced4da;
+            color: #495057;
+        }
+
+        .form-control:focus {
+            background-color: #e2e6ea;
+            border-color: #007bff;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: 1px solid #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
+    <title>Form Page</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center">User Information</h2>
+                    </div>
+                    <div class="card-body">
+                        <form onsubmit="return validation()" action="/submit" method="POST">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" class="form-control" id="name" name="name" >
+                                <p3 id="nameerr"></p3>
+                            </div>
+                            <div class="form-group">
+                                <label for="age">Age:</label>
+                                <input type="number" class="form-control" id="age" name="age" >
+                                <p3 id="ageerr"></p3>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number:</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" >
+                                <p3 id="phneerr"></p3>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" name="email" >
+                                <p3 id="emailerr"></p3>
+
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                        </form>
+                        <form action="/home">
+                            <button type="submit" class="btn btn-primary btn-block mt-2">Home</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function validation() {
+            // Get form inputs
+            const nameInput = document.getElementById('name');
+            const ageInput = document.getElementById('age');
+            const phoneInput = document.getElementById('phone');
+            const emailInput = document.getElementById('email');
+    
+            // Get error message elements
+            const nameError = document.getElementById('nameerr');
+            const ageError = document.getElementById('ageerr');
+            const phoneError = document.getElementById('phneerr');
+            const emailError = document.getElementById('emailerr');
+    
+            // Reset error messages
+            nameError.innerHTML = '';
+            ageError.innerHTML = '';
+            phoneError.innerHTML = '';
+            emailError.innerHTML = '';
+    
+            // Validate Name
+            if (nameInput.value.trim() === '') {
+                nameError.innerHTML = 'Name is required';
+                return false;
+            }
+    
+            // Validate Age
+            const ageValue = parseInt(ageInput.value, 10);
+            if (isNaN(ageValue) || ageValue < 1) {
+                ageError.innerHTML = 'Invalid age';
+                return false;
+            }
+    
+            // Validate Phone Number
+            const phoneRegex = /^\d{10}$/; // Assuming a 10-digit phone number
+            if (!phoneRegex.test(phoneInput.value.trim())) {
+                phoneError.innerHTML = 'Invalid phone number';
+                return false;
+            }
+    
+            // Validate Email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value.trim())) {
+                emailError.innerHTML = 'Invalid email address';
+                return false;
+            }
+    
+            // All validations passed
+            return true;
+        }
+    </script>
+    
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

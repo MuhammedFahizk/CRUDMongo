@@ -1,0 +1,89 @@
+<!-- views/home.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 50px;
+        }
+        h2 {
+            color: #007bff;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+        th {
+            background-color: #007bff;
+            color: #ffffff;
+        }
+    </style>
+    <title>Home Page</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Home Page</h2>
+
+        <form action="/form" class="d-flex mx-1">
+            <button class="btn btn-success ml-auto" type="submit">Add User</button>
+        </form>
+        
+
+        <table class="table mt-4 ">
+            <thead>
+                <tr>
+                    <th class="px-5">Name</th>
+                    <th class="px-5">Age</th>
+                    <th class="px-5">Phone</th>
+                    <th class="px-5">Email</th>
+                    <th class="px-5"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <% datas.forEach(user => { %>
+                    <tr c>
+                        <td class="p-5"><%= user.name %></td>
+                        <td class="p-5"><%= user.age %></td>
+                        <td class="p-5"><%= user.phone %></td>
+                        <td class="p-5"><%= user.email %></td>
+                        <td>
+                            <form action="/edit/<%= user._id %>" method="get">
+                                <button type="submit" class="btn btn-success btn-block">Edite</button>
+                                &nbsp;</button>
+                            </form>
+                        
+                            <form action="/delete/<%= user._id %>" method="get">
+                                <button type="submit" class="btn btn-danger btn-block">Delete</button>
+                                &nbsp;</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
