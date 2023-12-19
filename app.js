@@ -74,7 +74,7 @@ app.post('/login', async (req, res) => {
         if (userData) {
             res.redirect('/home');
         } else {
-            res.status(200).send('First signup');
+            res.status(200).send('<script>alert("Invalid login credentials. Please try again."); window.location="/";</script>');
         }
     } catch (error) {
         console.error('Error fetching user data:', error);
